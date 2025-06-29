@@ -33,7 +33,9 @@ html, body {
 .stChatMessage {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 /* Chat role label */
@@ -60,7 +62,6 @@ html, body {
     font-size: 16px;
     line-height: 1.6;
     padding: 0.4rem 0;
-    color: #0033CC;
     font-weight: 500;
     max-width: 100%;
 }
@@ -75,6 +76,5 @@ html, body {
 /* Focus input style */
 input:focus, textarea:focus {
     outline: none !important;
-    border-color: #0033CC !important;
     box-shadow: none !important;
 }
