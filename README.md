@@ -28,10 +28,6 @@ KnowSphere-Developer-Knowledge-Mapping is an AI-powered developer assistant and 
 ## Architecture
 ![image](https://github.com/user-attachments/assets/f8d753d7-fdb7-4fb6-bbe0-4318ccafe9ce)
 
-```
-User (Streamlit UI) <-> API Gateway <-> AWS Lambda (Backend) <-> Data Sources (DB, Files, etc.)
-```
-
 - **Frontend:** Streamlit app (`chatbot_ui.py`, `chatbot.py`) for chat and visualization.
 - **Backend:** Python-based AWS Lambda function, exposed via API Gateway.
 - **Styling:** Custom CSS for chat bubbles, themes, and layout.
