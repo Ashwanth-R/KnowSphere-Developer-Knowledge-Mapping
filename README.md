@@ -26,6 +26,7 @@ KnowSphere-Developer-Knowledge-Mapping is an AI-powered developer assistant and 
   - Clean separation of logic and styles (CSS).
 
 ## Architecture
+![image](https://github.com/user-attachments/assets/f8d753d7-fdb7-4fb6-bbe0-4318ccafe9ce)
 
 ```
 User (Streamlit UI) <-> API Gateway <-> AWS Lambda (Backend) <-> Data Sources (DB, Files, etc.)
