@@ -2,7 +2,7 @@
 
 ## Overview
 
-KnowSphere-Developer-Knowledge-Mapping is an AI-powered developer assistant and knowledge mapping platform designed for teams and organizations. Built for the AWS Lambda Hackathon, this project leverages serverless architecture, Streamlit UI, and modern NLP techniques to help users query, visualize, and interact with developer knowledge, domain expertise, and contributor data.
+KnowSphere-Developer-Knowledge-Mapping is an AI-powered developer assistant and knowledge mapping platform designed for teams and organizations. Built for the AWS Lambda Hackathon, this project leverages serverless architecture, Streamlit UI to visualize, and interact with developer knowledge, domain expertise, and contributor data.
 
 ## Features
 
@@ -63,10 +63,6 @@ User (Streamlit UI) <-> API Gateway <-> AWS Lambda (Backend) <-> Data Sources (D
 ```bash
 streamlit run chatbot_ui.py
 ```
-or
-```bash
-streamlit run chatbot.py
-```
 
 ### Deploying Backend
 
@@ -76,7 +72,7 @@ The backend consists of AWS Lambda functions that handle the core logic for know
 
 The backend consists of specialized Lambda functions that analyze different data sources to build a comprehensive knowledge map:
 
-- **Main Lambda Handler:** `export_more_granular.py` serves as the orchestrator that processes incoming requests from the API Gateway and coordinates with other specialized analyzers.
+- **Chat Handler:** `upload_db_to_s3.py` serves as the orchestrator that processes incoming requests from the API Gateway and coordinates with other specialized analyzers.
 
 - **GitHub Analyzer (`github_analyzer`):**
   - Analyzes GitHub repositories, commits, pull requests, and issues
@@ -95,8 +91,6 @@ The backend consists of specialized Lambda functions that analyze different data
   - Extracts subject matter expertise from authored content
   - Identifies domain knowledge leaders and documentation contributors
   - Maps relationships between documented processes and responsible team members
-
-- **Knowledge Integration:** All analyzers feed into a unified knowledge graph that correlates data across platforms to provide comprehensive developer insights.
 
 - **Serverless Execution:** Each analyzer runs independently as Lambda functions, ensuring cost-effective scaling based on demand and data source availability.
 
@@ -136,30 +130,12 @@ The backend consists of specialized Lambda functions that analyze different data
    - **GitHub Analysis:** Scans repositories for code contributions, language expertise, and collaboration networks
    - **Jira Integration:** Analyzes ticket assignments, project involvement, and domain-specific problem-solving patterns  
    - **Confluence Processing:** Extracts knowledge from documentation, meeting notes, and authored content
-   - **Natural Language Processing:** Combines insights from all sources for intent recognition and context understanding
-   - **Knowledge graph traversal:** Finds relevant connections between developers, domains, and contributions
    - **Context-aware response generation:** Synthesizes information to provide comprehensive answers
 4. **Response Generation:** Function returns structured JSON response with:
    - Processed answer to the user query
    - Confidence scores and metadata
    - Related suggestions or follow-up questions
 5. **Response Delivery:** API Gateway returns the response to the frontend for display
-
-#### Lambda Environment Configuration
-
-- **Memory:** 512MB - 1GB (adjustable based on data size)
-- **Timeout:** 30 seconds (sufficient for most queries)
-- **Runtime:** Python 3.9+
-- **Environment Variables:**
-  - `LOG_LEVEL`: For debugging purposes
-  - `DATA_SOURCE`: Configuration for data storage location
-  - `GITHUB_TOKEN`: GitHub API authentication token
-  - `JIRA_BASE_URL`: Jira instance URL
-  - `JIRA_USERNAME`: Jira authentication username
-  - `JIRA_API_TOKEN`: Jira API token
-  - `CONFLUENCE_BASE_URL`: Confluence instance URL
-  - `CONFLUENCE_USERNAME`: Confluence authentication username
-  - `CONFLUENCE_API_TOKEN`: Confluence API token
 
 #### Individual Lambda Function Details
 
@@ -187,29 +163,18 @@ The backend consists of specialized Lambda functions that analyze different data
 KnowSphere-Developer-Knowledge-Mapping/
 ├── backend/
 │   └── lambda/
-│       ├── export_more_granular.py    # Main Lambda handler and orchestrator
-│       ├── github_analyzer.py         # GitHub repository and contribution analysis
-│       ├── jira_analyzer.py          # Jira ticket and project analysis
-│       ├── confluence_analyzer.py    # Confluence documentation analysis
-│       ├── knowledge_processor.py    # Core knowledge processing and graph logic
-│       ├── nlp_utils.py             # NLP utilities and text processing helpers
-│       └── requirements.txt         # Lambda-specific dependencies
-├── chatbot_ui.py                    # Main Streamlit UI with advanced features
-├── chatbot.py                       # Minimal Streamlit chatbot UI
-├── requirements.txt                 # Frontend Python dependencies
-├── style.css                        # Main UI styles
-├── chatbot_styles.css              # Chatbot-specific styles
-├── .env                            # Environment variables (not committed)
-└── README.md                       # Project documentation
+│       ├── chat_handler
+│       ├── github_analyzer
+│       ├── jira_analyzer
+│       ├── confluence_analyzer
+│       └── dev_domain_map
+│   └── utils/
+        └── upload_db_to_s3
+├── chatbot_ui.py
+├── requirements.txt                 
+├── style.css                       
+└── README.md                       
 ```
-
-## Contributing
-
-Contributions are welcome! Please open issues or pull requests for improvements, bug fixes, or new features.
-
-## License
-
-This project is licensed under the MIT License.
 
 ## Acknowledgements
 
